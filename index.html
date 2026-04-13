@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASHFLOW 48 — 5 KI-Workflows. 48 Stunden. Deine ersten Verkäufe.</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --titanium: #86868b;
+    --titanium-light: #a1a1a6;
+    --silver: #e8e8ed;
+    --surface: #fbfbfd;
+    --surface-alt: #f5f5f7;
+    --deep: #1d1d1f;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #86868b;
+    --accent: #0071e3;
+    --accent-hover: #0077ED;
+    --glass: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --gradient-metal: linear-gradient(135deg, #e8e8ed 0%, #d2d2d7 30%, #e8e8ed 50%, #f5f5f7 70%, #e8e8ed 100%);
+    --gradient-dark: linear-gradient(180deg, #1d1d1f 0%, #2d2d30 100%);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: var(--glass);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+  }
+
+  nav .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  .nav-brand span {
+    color: var(--titanium);
+    font-weight: 400;
+  }
+
+  .nav-price {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-price strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0,113,227,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--titanium) 0%, var(--text-primary) 50%, var(--titanium) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-number {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(7rem, 18vw, 14rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    background: var(--gradient-metal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.8s;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 1s;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 36px;
+    background: var(--accent);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: none;
+    border-radius: 980px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.24);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: scale(1.02);
+    box-shadow: 0 6px 24px rgba(0, 113, 227, 0.32);
+  }
+
+  .btn-primary svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(3px);
+  }
+
+  .hero-meta {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+  }
+
+  .hero-meta strong {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards, pulse 2s ease infinite 1.5s;
+    animation-delay: 1.4s;
+  }
+
+  .hero-scroll svg {
+    width: 24px;
+    height: 24px;
+    color: var(--titanium-light);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--gradient-dark);
+    padding: 56px 24px;
+  }
+
+  .stats-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+
+  .stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .stat-item.visible {
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .stat-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--titanium-light);
+    margin-top: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    padding: 100px 24px;
+  }
+
+  .section-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+
+  /* ── MODULE CARDS ── */
+  .modules-section {
+    background: var(--surface-alt);
+  }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .module-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .module-card.visible {
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-metal);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .module-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: transparent;
+  }
+
+  .module-card:hover::before {
+    opacity: 1;
+  }
+
+  .module-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--silver);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .module-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .module-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  .module-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    padding: 5px 12px;
+    border-radius: 980px;
+    background: var(--surface-alt);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* ── WHAT YOU GET ── */
+  .package-section {
+    background: var(--surface);
+  }
+
+  .package-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .package-item {
+    background: var(--surface-alt);
+    border-radius: var(--radius-sm);
+    padding: 32px 28px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .package-item.visible {
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .package-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--gradient-metal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .package-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-secondary);
+  }
+
+  .package-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .package-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* ── TOOLS STRIP ── */
+  .tools-section {
+    background: var(--surface-alt);
+    padding: 64px 24px;
+    overflow: hidden;
+  }
+
+  .tools-section .section-eyebrow,
+  .tools-section .section-title {
+    text-align: center;
+  }
+
+  .tools-section .section-title {
+    margin-bottom: 48px;
+  }
+
+  .tool-scroll {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .tool-chip {
+    padding: 10px 20px;
+    border-radius: 980px;
+    background: white;
+    border: 1px solid var(--glass-border);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .tool-chip:hover {
+    border-color: var(--titanium-light);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── CTA / PRICING ── */
+  .cta-section {
+    background: var(--surface);
+    padding: 120px 24px;
+  }
+
+  .cta-card {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 64px 48px;
+    background: white;
+    border-radius: 28px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-metal);
+  }
+
+  .cta-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--accent);
+    padding: 6px 16px;
+    border-radius: 980px;
+    margin-bottom: 28px;
+  }
+
+  .cta-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-price-group {
+    margin: 28px 0;
+  }
+
+  .cta-price-old {
+    font-size: 1rem;
+    color: var(--titanium-light);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .cta-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .cta-price-note {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+  }
+
+  .cta-features {
+    text-align: left;
+    margin: 32px 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .cta-feature svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .cta-button {
+    display: block;
+    width: 100%;
+    padding: 18px 36px;
+    background: var(--accent);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 980px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.24);
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-hover);
+    transform: scale(1.01);
+    box-shadow: 0 6px 24px rgba(0, 113, 227, 0.32);
+  }
+
+  .cta-guarantee {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .footer-brand {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--titanium-light);
+    margin-bottom: 8px;
+  }
+
+  .footer-legal {
+    font-size: 0.72rem;
+    color: var(--titanium-light);
+  }
+
+  .footer-legal a {
+    color: var(--titanium);
+    text-decoration: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .stats-inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 16px;
+    }
+
+    .package-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .module-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+      padding: 48px 28px;
+    }
+
+    .cta-price {
+      font-size: 3rem;
+    }
+
+    section {
+      padding: 72px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 100px 20px 64px;
+    }
+
+    .nav-price { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">CASHFLOW 48 <span>by LibryX</span></div>
+    <div class="nav-price">Einmalpreis: <strong>29 €</strong></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">LibryX Program</div>
+  <h1><em>Cashflow</em></h1>
+  <div class="hero-number">48</div>
+  <p class="hero-sub">5 KI-Workflows. 48 Stunden.<br>Dein erstes digitales Einkommen.</p>
+  <div class="hero-cta-group">
+    <a href="#pricing" class="btn-primary">
+      Jetzt starten
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
+    <div class="hero-meta"><strong>29 €</strong> &nbsp;statt <s>89 €</s></div>
+  </div>
+  <div class="hero-scroll">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item" data-anim>
+      <div class="stat-value">5</div>
+      <div class="stat-label">KI-Workflows</div>
+    </div>
+    <div class="stat-item" data-anim>
+      <div class="stat-value">48h</div>
+      <div class="stat-label">Bis zum Launch</div>
+    </div>
+    <div class="stat-item" data-anim>
+      <div class="stat-value">0 €</div>
+      <div class="stat-label">Startkosten Tools</div>
+    </div>
+    <div class="stat-item" data-anim>
+      <div class="stat-value">3</div>
+      <div class="stat-label">Einkommensquellen</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<section class="modules-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Was du lernst</div>
+    <div class="section-title">Fünf Schritte.<br>Jeder bringt dich live.</div>
+    <p class="section-subtitle">Keine Theorie, keine Motivation. Echte Workflows die letzte Woche Geld verdient haben — Schritt für Schritt zum Nachmachen.</p>
+
+    <div class="module-grid">
+      <div class="module-card" data-anim>
+        <div class="module-num">01</div>
+        <div class="module-title">Dein erstes Buch in 3 Stunden</div>
+        <div class="module-desc">Thema finden auf Amazon, Struktur mit ChatGPT, Text mit Claude, Cover mit Gemini. KDP-Upload am selben Tag.</div>
+        <div class="module-tag">Amazon KDP</div>
+      </div>
+
+      <div class="module-card" data-anim>
+        <div class="module-num">02</div>
+        <div class="module-title">3 Kampagnen in 5 Minuten</div>
+        <div class="module-desc">Auto, Broad, Exact — drei Werbekampagnen die dein Buch sichtbar machen. Keywords generiert KI, Budget: 5 €/Tag.</div>
+        <div class="module-tag">KDP Ads</div>
+      </div>
+
+      <div class="module-card" data-anim>
+        <div class="module-num">03</div>
+        <div class="module-title">Shadow Workbooks auf Etsy</div>
+        <div class="module-desc">Gleiches Wissen, neues Format. Ausfüllbares PDF direkt mit Claude bauen. Digitaler Verkauf ohne Versand.</div>
+        <div class="module-tag">Etsy Digital</div>
+      </div>
+
+      <div class="module-card" data-anim>
+        <div class="module-num">04</div>
+        <div class="module-title">Content ohne Gesicht</div>
+        <div class="module-desc">ElevenLabs Voice, Kling B-Roll, CapCut Schnitt. 30 Minuten pro Video — kein Studio, keine Kamera nötig.</div>
+        <div class="module-tag">TikTok · Reels</div>
+      </div>
+
+      <div class="module-card" data-anim>
+        <div class="module-num">05</div>
+        <div class="module-title">Dein 48h Sprint-Plan</div>
+        <div class="module-desc">Stunde für Stunde. Was du wann machst. Am Ende von Tag 2: drei Produkte live, Ads laufen, Content gepostet.</div>
+        <div class="module-tag">Execution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="package-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Im Paket enthalten</div>
+    <div class="section-title">Alles was du brauchst.<br>Nichts was du nicht brauchst.</div>
+    <p class="section-subtitle">Kein 40-Stunden-Kurs. Kein Abo. Einmal kaufen, sofort loslegen.</p>
+
+    <div class="package-grid">
+      <div class="package-item" data-anim>
+        <div class="package-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-2.625 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25c0 .621.504 1.125 1.125 1.125M18 12h1.5m-1.5 0c.621 0 1.125.504 1.125 1.125M18 12c-.621 0-1.125.504-1.125 1.125m1.125 0v1.5c0 .621-.504 1.125-1.125 1.125M19.125 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-16.5 0h1.5m14.25 0h1.5"/></svg>
+        </div>
+        <div>
+          <div class="package-title">5 Video-Module</div>
+          <div class="package-desc">Kurze, scharfe HeyGen-Videos. Jedes Modul ein Workflow, keine Sekunde Füllmaterial.</div>
+        </div>
+      </div>
+
+      <div class="package-item" data-anim>
+        <div class="package-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+        </div>
+        <div>
+          <div class="package-title">eBook — 40+ Seiten</div>
+          <div class="package-desc">Das komplette Execution-Handbuch. Alle Schritte ausgeschrieben, alle Prompts zum Rauskopieren.</div>
+        </div>
+      </div>
+
+      <div class="package-item" data-anim>
+        <div class="package-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+        </div>
+        <div>
+          <div class="package-title">Prompt-Bibliothek</div>
+          <div class="package-desc">Alle Prompts aus dem Kurs als Copy-Paste-Vorlagen. Für ChatGPT, Claude und Gemini.</div>
+        </div>
+      </div>
+
+      <div class="package-item" data-anim>
+        <div class="package-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+        </div>
+        <div>
+          <div class="package-title">48h Sprint-Plan</div>
+          <div class="package-desc">Dein Stundenplan zum Ausdrucken. Stunde für Stunde, von der Idee bis zum Launch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section">
+  <div class="section-eyebrow">Dein Stack</div>
+  <div class="section-title">Die Tools. Kein Geheimnis.</div>
+  <div class="tool-scroll">
+    <div class="tool-chip">ChatGPT</div>
+    <div class="tool-chip">Claude</div>
+    <div class="tool-chip">Gemini</div>
+    <div class="tool-chip">Midjourney</div>
+    <div class="tool-chip">Amazon KDP</div>
+    <div class="tool-chip">Etsy</div>
+    <div class="tool-chip">ElevenLabs</div>
+    <div class="tool-chip">Kling</div>
+    <div class="tool-chip">Runway</div>
+    <div class="tool-chip">HeyGen</div>
+    <div class="tool-chip">CapCut</div>
+    <div class="tool-chip">Canva</div>
+    <div class="tool-chip">Sejda</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="pricing">
+  <div class="cta-card">
+    <div class="cta-badge">LibryX Program</div>
+    <div class="cta-title">CASHFLOW 48</div>
+    <div class="cta-price-group">
+      <div class="cta-price-old">89 €</div>
+      <div class="cta-price">29 €</div>
+      <div class="cta-price-note">Einmalzahlung · Kein Abo</div>
+    </div>
+    <div class="cta-features">
+      <div class="cta-feature">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        5 Video-Module mit echten Workflows
+      </div>
+      <div class="cta-feature">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        40+ Seiten eBook mit allen Schritten
+      </div>
+      <div class="cta-feature">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Komplette Prompt-Bibliothek (Copy-Paste)
+      </div>
+      <div class="cta-feature">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        48h Sprint-Plan als Checkliste
+      </div>
+      <div class="cta-feature">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Sofortiger Zugang nach Kauf
+      </div>
+    </div>
+    <a href="https://buy.stripe.com/fZu4gAgiK5v36G4d5wdnW01" class="cta-button">Jetzt für 29 € starten</a>
+    <div class="cta-guarantee">Echte Workflows · Kein Risiko · Sofort loslegen</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">CASHFLOW 48 · Ein LibryX Program</div>
+  <div class="footer-legal">
+    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp; <a href="agb.html">AGB</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const siblings = el.parentElement.querySelectorAll('[data-anim]');
+        const i = Array.from(siblings).indexOf(el);
+        el.style.animationDelay = `${i * 0.1}s`;
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+  // Smooth nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.06)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
