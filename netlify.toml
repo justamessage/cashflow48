@@ -1,5 +1,8 @@
 [build]
-  publish = "."
+  # Ausgeliefert wird NUR dist/ (scripts/build-public.mjs, Positivliste). Bis 03.11.2026 war die
+  # Repo-Wurzel Publish-Ordner und Repo-Interna waren öffentlich.
+  command = "node scripts/build-public.mjs"
+  publish = "dist"
   functions = "netlify/functions"
 
 # Redirect www to bare domain
